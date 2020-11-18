@@ -1,0 +1,9 @@
+---
+- name: Test playbook for lab_manager
+  hosts: localhost
+  gather_facts: false
+  become: false
+  roles:
+
+    - rhlearning.lab_manager.test_role
+...

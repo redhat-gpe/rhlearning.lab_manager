@@ -1,0 +1,6 @@
+---
+
+- name: Test Roles for rhlearning.lab_manager collection
+  debug:
+    msg: :Hello World"
+
