@@ -1,0 +1,27 @@
+# vim: set ft=ansible
+---
+- name: Solve lab Installation and Verification of cp-ocp-admin-storage workshop
+  hosts: localhost
+  gather_facts: false
+  become: false
+  roles:
+    - role: '../roles/cp-ocp-admin-storage-prereqs'
+  tasks:
+
+  - name: get clusterversion
+    command: oc get clusterversion
+    register: clusterversion_out
+    failed_when: '"4.3.1" not in clusterversion_out.stdout'
+
+  - name: describe clusterversion
+    command: oc describe clusterversion
+
+  - name: get nodes
+    command: oc get nodes
+    register: nodes_out
+    failed_when: '"v1.16.2" not in nodes_out.stdout'
+
+  - name: make sure we start with 3 nodes
+    shell: 'oc get node -l node-role.kubernetes.io/worker= --no-headers | wc -l'
+    register: nodes_quantity
+    failed_when: 'nodes_quantity.stdout | int != 3'

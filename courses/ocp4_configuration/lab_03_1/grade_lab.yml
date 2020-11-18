@@ -1,0 +1,42 @@
+---
+- name: Grade lab 03_1 of OpenShift 4 Configuration
+  hosts: localhost
+  gather_facts: false
+  become: false
+
+  # All lab tests go here
+  tasks:
+
+  - name: Check definition of group local-admin
+    include_role:
+      name: grader_check_ocp_resource
+    vars:
+      task_description_message: Check the definition of the group local-admin
+      resource_kind: Group
+      resource_name: local-admin
+      resource_definition_checks:
+      - error_message: User alice is not a member of the local-admin group
+        json_query: "users[?@=='alice']|[0]"
+        value: alice
+      kubeconfig: ~/cluster-{{ lookup('env', 'GUID') }}/auth/kubeconfig
+
+  - name: Check LDAP groups
+    include_role:
+      name: grader_check_ocp_resource
+    vars:
+      task_description_message: Check LDAP groups sync for {{ group_name }}
+      resource_kind: Group
+      resource_name: "{{ group_name }}"
+      resource_definition_checks:
+      - error_message: Group {{ group_name }} not synced from LDAP?
+        json_query: 'metadata.labels."openshift.io/ldap.host"'
+        value: ipa.shared.example.opentlc.com
+      kubeconfig: ~/cluster-{{ lookup('env', 'GUID') }}/auth/kubeconfig
+    loop:
+    - ocp-platform
+    - ocp-production
+    - ocp-users
+    - paymentapp
+    - portalapp
+    loop_control:
+      loop_var: group_name

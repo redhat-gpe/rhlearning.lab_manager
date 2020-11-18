@@ -1,0 +1,15 @@
+---
+- name: Grade lab 01 01 of Ansible Implementation
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  tasks:      # All lab tests go here
+
+    - name: Section 2
+      include_role:
+        name: grader_check_always_succeed
+      vars:
+        student_error_message: Grader failed
+        task_description_message: Run lab grader on grader host
+...

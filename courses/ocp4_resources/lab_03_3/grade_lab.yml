@@ -1,0 +1,20 @@
+---
+- name: Grade lab 03_3 of OpenShift 4 Resources & Tools
+  hosts: localhost
+  gather_facts: false
+  become: false
+
+  # All lab tests go here
+  tasks:
+  - name: Set GUID
+    set_fact:
+      guid: "{{ lookup('env','GUID') }}"
+  - name: Check the Deployment exists
+    include_role:
+      name: grader_check_ocp_deployment_exists
+    vars:
+      task_description_message: Check if the deployment yaml-deployment exists and has 1 replica
+      deployment_name: "yaml-deployment"
+      num_replicas: 1
+      project_name: "{{ guid }}-yaml-manifests"
+      student_error_message: "Deployment yaml-deployment does not exist in project {{ guid }}-yaml-manifests or does not have 1 replica"

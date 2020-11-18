@@ -1,0 +1,65 @@
+
+- name: infra-ec2-wait_for_linux_hosts
+  hosts:
+    - all:!windows
+  become: true
+  gather_facts: no
+  roles:
+  - { role: "infra-ec2-wait_for_linux_hosts" }
+
+###############     Play for solutions  ###############
+- import_playbook: ./solve_section1.yml
+  when: solve == "true"
+
+###############     Play1 for grade     ###############
+- hosts: bastions
+  become: yes
+  tasks:
+  - name: hello world module
+    stat:
+      path: /home/devops/ansible_implementation/library/hello_world.py
+    register: mod1_facts
+  - name: Fail
+    debug:
+      msg: "FAILED: hello_world module is not present"
+    when: mod1_facts.stat.exists != true
+  - name: Pass
+    debug:
+      msg: "Success: hello_world module pressent" 
+    when: mod1_facts.stat.exists == true
+  - name: version change module
+    stat:
+      path: /home/devops/ansible_implementation/library/version_change.py
+    register: mod2_facts
+  - name: Fail
+    debug:
+      msg: "FAILED: version_change module is not present"
+    when: mod2_facts.stat.exists != true
+  - name: Pass
+    debug:
+      msg: "Success: version_change module pressent" 
+    when: mod2_facts.stat.exists == true
+  - name: first-module playbook
+    stat:
+      path: /home/devops/ansible_implementation/first-module.yml
+    register: first
+  - name: Fail
+    debug:
+      msg: "FAILED: first-module playbook is not present"
+    when: first.stat.exists != true
+  - name: Pass
+    debug:
+      msg: "Success: first-module playbook pressent" 
+    when: first.stat.exists == true
+  - name: second-module playbook
+    stat:
+      path: /home/devops/ansible_implementation/second-module.yml
+    register: second
+  - name: Fail
+    debug:
+      msg: "FAILED: second-module playbook is not present"
+    when: second.stat.exists != true
+  - name: Pass
+    debug:
+      msg: "Success: second-module playbook pressent" 
+    when: second.stat.exists == true

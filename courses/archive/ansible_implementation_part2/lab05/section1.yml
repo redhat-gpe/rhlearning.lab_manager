@@ -1,0 +1,42 @@
+
+- name: infra-ec2-wait_for_linux_hosts
+  hosts:
+    - all:!windows
+  become: true
+  gather_facts: no
+  roles:
+  - { role: "infra-ec2-wait_for_linux_hosts" }
+
+###############     Play for solutions  ###############
+- import_playbook: ./solve_section1.yml
+  when: solve == "true"
+
+###############     Play1 for grade     ###############
+- hosts: support
+  gather_facts: false
+  tasks:
+  - name: Cheeck samba package
+    shell: rpm -q samba
+    register: pkg
+    ignore_errors: yes
+  
+  - name: Fail samba package
+    debug:
+      msg: "FAILED: samba package is not installed"
+    when: "'samba' not in pkg.stdout"
+  - name: Pass samba package
+    debug:
+      msg: "Success: Samba package is installed" 
+    when: "'samba' in pkg.stdout"
+  - name: smb.conf file is present
+    stat:
+      path: /etc/samba/smb.conf
+    register: conf
+  - name: Fail smb.conf
+    debug:
+      msg: "FAILED: samba conf file is not present"
+    when: conf.stat.exists != true
+  - name: Pass samba.conf
+    debug:
+      msg: "Success: samba conf package is present" 
+    when: conf.stat.exists == true

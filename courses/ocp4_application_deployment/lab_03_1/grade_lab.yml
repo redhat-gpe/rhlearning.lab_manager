@@ -1,0 +1,40 @@
+---
+- name: Grade lab 03_1 of OpenShift 4 Application Deployment
+  hosts: localhost
+  gather_facts: false
+  become: false
+
+  # All lab tests go here
+  tasks:
+  - name: Set GUID
+    set_fact:
+      guid: "{{ lookup('env','GUID') }}"
+
+  - name: Check that the Deployment Config printenv exists
+    include_role:
+      name: grader_check_ocp_resource
+    vars:
+      task_description_message: Check that the Deployment Config `printenv` exists.
+      student_error_message: "Deployment Config `printenv` does not exist in project ${GUID}-env."
+      resource_api_version: apps.openshift.io/v1
+      resource_kind: DeploymentConfig
+      resource_name: printenv
+      resource_namespace: "{{ guid }}-env"
+
+  - name: Check that the Gogs ConfigMap exists
+    include_role:
+      name: grader_check_ocp_configmap_exists
+    vars:
+      task_description_message: Check that the Gogs ConfigMap exists
+      configmap_name: gogs
+      project_name: "{{ guid }}-gogs"
+      student_error_message: "ConfigMap gogs does not exist in project {{ guid }}-gogs"
+
+  - name: Check the Gogs Route exists
+    include_role:
+      name: grader_check_ocp_route_exists
+    vars:
+      task_description_message: Check that the Gogs route exists
+      route_name: "gogs"
+      project_name: "{{ guid }}-gogs"
+      student_error_message: "Route gogs does not exist in project {{ guid }}-gogs"

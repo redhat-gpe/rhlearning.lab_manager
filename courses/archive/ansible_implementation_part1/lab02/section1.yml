@@ -1,0 +1,37 @@
+---
+- name: infra-ec2-wait_for_linux_hosts
+  hosts:
+    - all:!windows
+  become: true
+  gather_facts: no
+  roles:
+  - { role: "infra-ec2-wait_for_linux_hosts" }
+
+###############     Play for solutions  ###############
+- import_playbook: ./solve_section1.yml
+  when: solve == "true"
+
+###############     Play1 for grade     ###############
+- name: Verify Section1
+  hosts: apps
+  gather_facts: no
+  tasks:  
+  - name: Run a Curl Test against Frontend
+    uri:
+      url: http://{{ ansible_host }}
+      status_code: 403,200,-1
+      return_content: yes
+    register: webpage
+
+  - name: fail
+    debug: 
+      msg: "FAIL : Webpage does not have correct content."
+    when: "'Hoorraaayyy!!! My first playbook ran successfully' != webpage.content"
+
+
+  - name: pass
+    debug: 
+      msg: "PASS : Hoorraaayyy!!! My first playbook ran successfully is in the page content"
+    when:  "'Hoorraaayyy!!! My first playbook ran successfully' in webpage.content"
+    
+  

@@ -1,0 +1,31 @@
+- name: infra-ec2-wait_for_linux_hosts
+  hosts:
+    - all:!windows
+  become: true
+  gather_facts: no
+  roles:
+  - { role: "infra-ec2-wait_for_linux_hosts" }
+
+###############     Play for solutions  ###############
+- import_playbook: ./solve_section1.yml
+  when: solve == "true"
+
+###############     Play for grade      ###############
+- hosts: bastions
+  tasks:
+  - name: Run a Curl Test against Frontend
+    uri:
+     url: http://{{ item }}
+     return_content: yes
+    with_items: "{{ groups['apps'] }}"
+    register: webpage
+
+  - name: Fail if 'has been customized using Ansible' is not in the page content
+    debug:
+      msg: "FAILED: Webpage is not having correct content"
+    when: "'has been customized using Ansible' not in webpage.results[0].content"
+    
+  - name: Success if 'has been customized using Ansible' is in the page content
+    debug: 
+      msg: "Success: All requirements completed."
+    when: "'has been customized using Ansible' in webpage.results[0].content"

@@ -1,0 +1,20 @@
+---
+- name: Grade lab 03 01 of Ansible Engine Foundations
+  hosts: web
+  gather_facts: false
+  become: true
+
+  roles:      # All lab tests go here
+
+    - name: Section 6.4.1, Check student has installed Apache
+      role: grader_check_package_installed
+      vars:
+        task_description_message: Install Apache, httpd, package
+        package: httpd
+
+    - name: Section 6.4.2, Check student has running Apache
+      role: grader_check_service_started
+      vars:
+        task_description_message: Start Apache, httpd, Service
+        service: httpd
+...

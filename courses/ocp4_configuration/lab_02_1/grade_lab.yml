@@ -1,0 +1,48 @@
+---
+- name: Grade lab 02_1 of OpenShift 4 Configuration
+  hosts: localhost
+  gather_facts: false
+  become: false
+
+  # All lab tests go here
+  tasks:
+  - name: Check HTPasswd users
+    include_role:
+      name: grader_check_ocp_resource
+    vars:
+      task_description_message: Check HTPasswd user {{ user_name }}
+      resource_api_version: user.openshift.io/v1
+      resource_kind: User
+      resource_name: "{{ user_name }}"
+      kubeconfig: ~/cluster-{{ lookup('env', 'GUID') }}/auth/kubeconfig
+    loop:
+    - alice
+    - bob
+    loop_control:
+      loop_var: user_name
+
+  - name: Check LDAP users
+    include_role:
+      name: grader_check_ocp_resource
+    vars:
+      task_description_message: Check LDAP user {{ user_name }}
+      resource_api_version: user.openshift.io/v1
+      resource_kind: User
+      resource_name: "{{ user_name }}"
+      kubeconfig: ~/cluster-{{ lookup('env', 'GUID') }}/auth/kubeconfig
+    loop:
+    - andrew
+    - karla
+    loop_control:
+      loop_var: user_name
+
+  - name: Check that kubeadmin secret does not exist
+    include_role:
+      name: grader_check_ocp_resource
+    vars:
+      task_description_message: Check if the kubeadmin secret still exists
+      resource_kind: Secret
+      resource_name: kubeadmin
+      resource_namespace: kube-system
+      resource_should_exist: false
+      kubeconfig: ~/cluster-{{ lookup('env', 'GUID') }}/auth/kubeconfig

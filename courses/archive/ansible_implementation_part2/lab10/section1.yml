@@ -1,0 +1,39 @@
+
+- name: infra-ec2-wait_for_linux_hosts
+  hosts:
+    - all:!windows
+  become: true
+  gather_facts: no
+  roles:
+  - { role: "infra-ec2-wait_for_linux_hosts" }
+
+###############     Play for solutions  ###############
+- import_playbook: ./solve_section1.yml
+  when: solve == "true"
+
+###############     Play1 for grade     ###############
+- hosts: bastions
+  tasks:
+  - name: Check the file on bastion
+    shell: "grep connection_type /tmp/bastion.{{GUID}}.internal"
+    register: output
+  - name: Fail
+    debug:
+      msg: "FAILED: File is not in correct format"
+    when: output.stdout != "connection_type = local"
+  - name: Pass
+    debug:
+      msg: "Success: File is in correct format"
+
+- hosts: supports
+  gather_facts: false
+  tasks:
+  - name: Check the file on support1
+    shell: "grep connection_type /tmp/support1.{{GUID}}.internal"
+    register: output
+  - name: Fail
+    debug:
+      msg: "FAILED: File is not in correct format"
+    when: output.stdout != "connection_type = ssh"
+  - debug:
+      msg: "Success: File is in correct format"

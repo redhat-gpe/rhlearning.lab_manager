@@ -1,0 +1,31 @@
+---
+- name: Grade lab 05_1 of ocp4_advanced_deployment
+  hosts: localhost
+  gather_facts: false
+  become: false
+  environment:
+    KUBECONFIG: "{{ lookup('env', 'HOME') }}/openstack-upi/auth/kubeconfig"
+  tasks:
+  - name: Print placeholder
+    debug:
+      msg: This grader is not yet implemented
+  
+  # Check that API Servers have a servingCertificate
+
+  # Check that Ingress Controllers have a certificate
+
+  # Check that Identity Provider is htpasswd
+
+
+  # Check that users andrew, david and karla exist and can login
+
+  # Check that david and karla are in group lab-cluster-admins
+
+
+  # Check that lab-cluster-admins has cluster-admin permission
+
+  # Check that there are two routes in the openshift-image-registry project
+
+
+  # Check that the node-ssh deployment is running and ready
+

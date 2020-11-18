@@ -1,0 +1,29 @@
+
+- name: infra-ec2-wait_for_linux_hosts
+  hosts:
+    - all:!windows
+  become: true
+  gather_facts: no
+  roles:
+  - { role: "infra-ec2-wait_for_linux_hosts" }
+
+###############     Play for solutions  ###############
+- import_playbook: ./solve_section1.yml
+  when: solve == "true"
+
+###############     Play1 for grade     ###############
+- hosts: apps
+  gather_facts: false
+  become: yes
+  tasks:
+  - shell: grep 'clyde@example.com' /etc/motd
+    register: result
+    ignore_errors: yes
+  - name: Fail
+    debug:
+      msg: "FAILED: Message of the day is not set correctly"
+    when: result.stdout != "You can ask clyde@example.com for access."
+  - name: Pass
+    debug:
+      msg: "Success: Message of the day is set correctly" 
+    when: result.stdout == "You can ask clyde@example.com for access."

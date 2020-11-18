@@ -1,0 +1,35 @@
+- name: infra-ec2-wait_for_linux_hosts
+  hosts:
+    - all:!windows
+  become: true
+  gather_facts: no
+  roles:
+  - { role: "infra-ec2-wait_for_linux_hosts" }
+
+###############     Play for solutions  ###############
+- import_playbook: ./solve_section1.yml
+  when: solve == "true"
+
+###############     Play1 for grade     ###############
+- name: Grade Lab04
+  hosts: apps
+  gather_facts: True
+  tasks:
+  - name: Run a Curl Test against Frontend
+    uri:
+      url: http://{{ inventory_hostname }}
+      return_content: yes
+    register: webpage
+    ignore_errors: yes
+ 
+  - debug: var=webpage.content
+  - name:  fail
+    debug: 
+      msg: "FAIL : Webpage does not have correct content."
+    when:  "'Example web content' == webpage.content"
+       
+  - name: set grade to pass
+    debug: 
+      msg: "PASS : {{ webpage.content }}"
+    when:  "'Example web content' == webpage.content"
+  
