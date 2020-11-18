@@ -1,0 +1,29 @@
+---
+# Stage 1: Run the grader test
+
+- name: Run a command and collect response
+  command: "{{ command }}"
+  register: r_command
+
+- name: Output command register
+  debug:
+    var: r_command
+    verbosity: 2
+
+######################################################
+#                                                    #
+# Common boiler plate logging logic - Do not modify  #
+#                                                    #
+######################################################
+
+- name: Create logging message fact
+  set_fact:
+    grader_output_message: "{{ inventory_hostname + ', '\
+    + task_description_message }}"
+  delegate_to: localhost
+
+- when: r_state.changed
+  name: Import logging tasks
+  import_role:
+    name: ftl_run_log_grade_to_log
+...

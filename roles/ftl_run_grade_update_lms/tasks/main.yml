@@ -1,0 +1,9 @@
+---
+
+- name: Update LMS if lab is enabled for LMS update
+  when:
+    - update_lms is defined
+    - update_lms == true
+  uri:  
+
+...

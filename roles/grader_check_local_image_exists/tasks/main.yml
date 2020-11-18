@@ -1,0 +1,44 @@
+---
+- name: Set success flag to false
+  set_fact:
+    success: false
+
+- name: Print out the container image we are checking
+  debug:
+    msg: "Checking if container image {{ image_name }} exists locally"
+    verbosity: 2
+
+- name: Look up image
+  podman_image_info:
+    name: "{{ image_name }}"
+  register: r_image
+
+- name: Check that the image exists
+  set_fact:
+    success: true
+  when:
+  - r_image.images | length == 1
+
+######################################################
+#                                                    #
+# Common boiler plate logging logic - Do not modify  #
+#                                                    #
+######################################################
+
+- name: Create Pass logging message
+  when: success | bool
+  set_fact:
+    output_message: "PASS: {{ task_description_message }}"
+  delegate_to: localhost
+
+- name: Create Fail logging message
+  when: not success | bool
+  set_fact:
+    output_message: "FAIL: {{ task_description_message }}: {{ student_error_message|d('')}}"
+  delegate_to: localhost
+
+- name: Import logging tasks
+  import_role:
+    name: ftl_run_log_grade_to_log
+  vars:
+    grader_output_message: "{{ output_message }}"

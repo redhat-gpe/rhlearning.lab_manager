@@ -1,0 +1,32 @@
+---
+- name: Check user {{ user }} exists
+  user:
+    name: "{{ user }}"
+    state: present
+  check_mode: true
+  register: r_state
+
+- when: not r_state.changed | bool
+  name: "Success - set fact"
+  name: Create Pass logging message
+  set_fact:
+    success: true
+
+- when: r_state.changed | bool
+  name: "Fail - set fact"
+  name: Create Fail logging message
+  set_fact:
+    success: false
+
+######################################################
+#                                                    #
+# Common boiler plate logging logic - Do not modify  #
+#                                                    #
+# 2019-12-23 tok@redhat.com                          # 
+#                                                    #
+######################################################
+
+- name: Import logging role
+  import_role:
+    name: ftl_run_log_grade_to_log
+...

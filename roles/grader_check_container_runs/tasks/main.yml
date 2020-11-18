@@ -1,0 +1,60 @@
+---
+- name: Set success flag to false
+  set_fact:
+    success: false
+
+- name: Print out the container we are running
+  debug:
+    msg: "Checking if container {{ image_name }} runs successfully"
+    verbosity: 2
+
+- name: Run container
+  shell: "podman run {{ runtime_args | default('') }} {{ image_name }}"
+  register: r_run_container
+  ignore_errors: true
+
+- name: Test application
+  uri:
+    url: "{{ url_to_check }}"
+    return_content: true
+  when: url_to_check is defined
+  register: r_container_output
+  ignore_errors: true
+
+- name: Stop container
+  command: "podman rm {{ r_run_container.stdout }} --force"
+  when: 
+  - cleanup
+  - r_run_container.stdout != -1
+  ignore_errors: true
+
+- name: Check that the container ran successfully
+  set_fact:
+    success: true
+  when: 
+  - (r_run_container.stdout == "{{ expected_output }}") or 
+    (r_container_output.content.find("{{ expected_output }}") != -1)
+
+######################################################
+#                                                    #
+# Common boiler plate logging logic - Do not modify  #
+#                                                    #
+######################################################
+
+- name: Create Pass logging message
+  when: success | bool
+  set_fact:
+    output_message: "PASS: {{ task_description_message }}"
+  delegate_to: localhost
+
+- name: Create Fail logging message
+  when: not success | bool
+  set_fact:
+    output_message: "FAIL: {{ task_description_message }}: {{ student_error_message|d('')}}"
+  delegate_to: localhost
+
+- name: Import logging tasks
+  import_role:
+    name: ftl_run_log_grade_to_log
+  vars:
+    grader_output_message: "{{ output_message }}"

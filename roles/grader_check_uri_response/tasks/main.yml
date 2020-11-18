@@ -1,0 +1,51 @@
+---
+- name: Set success flag to false
+  set_fact:
+    success: false
+
+- name: Print out the URI we are checking
+  debug:
+    msg: "Checking if URI {{ url }} exists"
+    verbosity: 2
+
+- name: Check URI {{ url }} responds
+  uri:
+    url: "{{ url }}"
+    url_username: "{{ url_username }}"
+    url_password: "{{ url_password }}"
+  ignore_errors: true
+  register: r_uri
+
+- name: Output of r_uri
+  debug:
+    var: r_uri
+
+- name: Check that the the response is a 200
+  set_fact:
+    success: true
+  when:
+    - r_uri.status == 200
+
+######################################################
+#                                                    #
+# Common boiler plate logging logic - Do not modify  #
+#                                                    #
+######################################################
+
+- name: Create Pass logging message
+  when: success | bool
+  set_fact:
+    output_message: "PASS: {{ task_description_message }}"
+  delegate_to: localhost
+
+- name: Create Fail logging message
+  when: not success | bool
+  set_fact:
+    output_message: "FAIL: {{ task_description_message }}: {{ student_error_message|d('')}}"
+  delegate_to: localhost
+
+- name: Import logging tasks
+  import_role:
+    name: ftl_run_log_grade_to_log
+  vars:
+    grader_output_message: "{{ output_message }}"
