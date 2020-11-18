@@ -1,0 +1,9 @@
+---
+- name: Setup playbook for lab_manager
+  hosts: localhost
+  gather_facts: false
+  become: true
+  roles:
+
+    - rhlearning.lab_manager.lm_setup
+...
