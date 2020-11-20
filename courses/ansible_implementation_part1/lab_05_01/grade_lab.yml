@@ -10,9 +10,8 @@
         name: grader_check_package_installed
       vars:
         package:
-          - httpd
-          - firewalld
-          - python-httplib2
+    - httpd
+    - firewalld
         task_description_message: Check packages installed
 
     - name: Section 5
@@ -29,14 +28,20 @@
         name: grader_check_service_enabled
       vars:
         service:
-          - httpd
-          - firewalld
+    - httpd
+    - firewalld
         task_description_message: Check services enabled
 
     - name: Section 5
       include_role:
         name: grader_check_file_exists
       vars:
-        file: '/var/www/html/index.html'
-        task_description_message: Check index.html exists.
+        file:
+          - '/etc/httpd/conf.d/vhost.conf'
+          - '/var/www/vhost/index.php'
+      task_description_message: Check vhost.conf and index.php exist
+
+    - name: Section 5
+      include_role:
+        name: grader_check_selinux_enforcing
 ...
