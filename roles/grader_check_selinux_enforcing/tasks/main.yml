@@ -1,0 +1,31 @@
+---
+- name: Check SELinux is enforcing.
+  selinux:
+    state: enabled
+  check_mode: true
+  register: r_state
+
+- when: not r_state.changed | bool
+  name: "Success - Set fact."
+  name: Create pass logging message.
+  set_fact:
+    success: true
+
+- when: r_state.changed | bool
+  name: "Fail - Set fact."
+  name: Create fail logging message.
+  set_fact:
+    success: false
+
+######################################################
+#                                                    #
+# Common boiler plate logging logic - Do not modify  #
+#                                                    #
+######################################################
+
+- name: Import logging role
+  include_role:
+    name: ftl_run_log_grade_to_log
+  vars:
+    grader_output_message: "{{ task_description_message }}"
+...

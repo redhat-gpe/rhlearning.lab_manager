@@ -1,0 +1,42 @@
+---
+- name: Grade lab 04 01 of Ansible Implementation
+  hosts: apps
+  gather_facts: false
+
+  tasks:      # All lab tests go here
+
+    - name: Section 5
+      include_role:
+        name: grader_check_package_installed
+      vars:
+        package:
+          - httpd
+          - firewalld
+          - python-httplib2
+        task_description_message: Check packages installed
+
+    - name: Section 5
+      include_role:
+        name: grader_check_service_started
+      vars:
+        service:
+          - httpd
+          - firewalld
+        task_description_message: Check services started
+
+    - name: Section 5
+      include_role:
+        name: grader_check_service_enabled
+      vars:
+        service:
+          - httpd
+          - firewalld
+        task_description_message: Check services enabled
+
+    - name: Section 5
+      include_role:
+        name: grader_check_file_exists
+      vars:
+        file: '/var/www/html/index.html'
+        task_description_message: Check index.html exists.
+...
