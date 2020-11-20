@@ -10,8 +10,8 @@
         name: grader_check_package_installed
       vars:
         package:
-    - httpd
-    - firewalld
+          - httpd
+          - firewalld
         task_description_message: Check packages installed
 
     - name: Section 5
@@ -28,8 +28,8 @@
         name: grader_check_service_enabled
       vars:
         service:
-    - httpd
-    - firewalld
+          - httpd
+          - firewalld
         task_description_message: Check services enabled
 
     - name: Section 5
