@@ -7,7 +7,7 @@
   roles:      # All lab tests go here
 
     - name: <MEANINGFUL_NAME>
-      role: ftl_check_package_installed
+      role: lm_check_package_installed
       vars:
         section_number: 6.4.1
         student_error_message: Package httpd not installed

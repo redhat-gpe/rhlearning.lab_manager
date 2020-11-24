@@ -24,19 +24,19 @@
       command: >-
         /opt/virtualenvs/venv-grading/bin/awx job_template list 
         --conf.insecure
-        --conf.host {{ ftl_tower_host }}
-        --conf.token {{ ftl_tower_token }}
+        --conf.host {{ lm_tower_host }}
+        --conf.token {{ lm_tower_token }}
         --name={{ job_template_name }} 
         -f jq --filter '.results[] | .id'
-      register: r_ftl_updater_job_id
+      register: r_lm_updater_job_id
 
     - name: Output response from job_id lookup
       debug:
-        var: r_ftl_updater_job_id   
+        var: r_lm_updater_job_id   
 
-    - name: Capture ftl job_id as fact for easy reference
+    - name: Capture lm job_id as fact for easy reference
       set_fact:
-        f_ftl_updater_job_id: "{{ r_ftl_updater_job_id.stdout }}" 
+        f_lm_updater_job_id: "{{ r_lm_updater_job_id.stdout }}" 
 
     - name: Call Tower API scormcloud-updater
       uri:

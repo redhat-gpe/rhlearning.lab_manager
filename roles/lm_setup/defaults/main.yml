@@ -30,13 +30,13 @@ pip_dependencies:
   - virtualenv
   - ansible-tower-cli
 
-# Git repo for FTL repo
+# Git repo for lm repo
 
-ftl_git_repo: https://github.com/redhat-gpte-devopsautomation/FTL.git
+lm_git_repo: https://github.com/redhat-gpte-devopsautomation/lm.git
 
 # Local destination directory on grading host
 
-ftl_grading_host_home: /opt/ftl-repo-clone
+lm_grading_host_home: /opt/lm-repo-clone
 
 virtual_env_home: /opt/virtualenvs
 virtual_env_name: venv-grading

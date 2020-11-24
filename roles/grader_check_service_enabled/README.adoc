@@ -1,4 +1,4 @@
-== README ftl_check_package_installed
+== README lm_check_package_installed
 
 Checks if a package is installed, if not logs a failure message for student
 
@@ -14,7 +14,7 @@ Checks if a package is installed, if not logs a failure message for student
 [source,yaml]
 ----
 - name: Section 6.4.1, Check student has installed Apache
-  role: ftl_check_package_installed
+  role: lm_check_package_installed
   vars:
     section_number: 6.4.1
     task_description_message: Package httpd not installed

@@ -1,5 +1,5 @@
 ---
-# External role to setup grader host virtualenf and FTL grading infra
+# External role to setup grader host virtualenf and lm grading infra
 
-- src: https://github.com/redhat-gpte-devopsautomation/ftl-injector
+- src: https://github.com/redhat-gpte-devopsautomation/lm-injector
   version: v0.4
