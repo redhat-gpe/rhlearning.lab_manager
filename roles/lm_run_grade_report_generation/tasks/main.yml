@@ -37,7 +37,7 @@
     dest: "{{ grader_working_dir }}/{{ grader_student_report_file }}"
     insertafter:  EOF
 
-- when: ftl_report_checksum | default(false)
+- when: lm_report_checksum | default(false)
   name: Add a checksum to grading report
   block: 
 

@@ -1,4 +1,4 @@
-== README ftl_check_command_output
+== README lm_check_command_output
 
 Runs a comaand and checks if the response contains the specifies string
 
@@ -15,7 +15,7 @@ Runs a comaand and checks if the response contains the specifies string
 [source,yaml]
 ----
 - name: Section 6.4.1, Check student has installed Apache
-  role: ftl_check_command_output
+  role: lm_check_command_output
   vars:
     section_number: 6.4.1
     task_description_message: Incorrect hostname set

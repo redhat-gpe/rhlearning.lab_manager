@@ -6,8 +6,8 @@
 grader_working_dir:               /tmp/grading_dir
 grader_student_report_file:       grading_report.txt
 
-ftl_tower_host:                   https://tower.ftl-tower-test.na.shared.opentlc.com
-ftl_tower_token: !vault |
+lm_tower_host:                   https://tower.lm-tower-test.na.shared.opentlc.com
+lm_tower_token: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   61656535356633316331663339353762363064353139666436306637336130363566656130386234
   6333616362396531343361643630363832353264316565300a316562323436333335373064346633

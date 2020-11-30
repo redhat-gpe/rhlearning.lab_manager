@@ -1,0 +1,10 @@
+---
+- name: Clone lm git repo to grading host
+  git:
+    repo:       "{{ lm_git_repo }}"
+    dest:       "{{ lm_grading_host_home }}"
+    version:    "{{ lm_git_branch | default('master') }}"
+    force:      yes
+  tags:
+    - clone
+...

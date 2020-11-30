@@ -18,5 +18,5 @@
 
 - name: Import logging role
   import_role:
-    name: new_ftl_run_log_grade_to_log
+    name: new_lm_run_log_grade_to_log
 ...

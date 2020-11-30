@@ -25,5 +25,5 @@
 - when: r_state.changed
   name: Import logging tasks
   import_role:
-    name: ftl_run_log_grade_to_log
+    name: lm_run_log_grade_to_log
 ...

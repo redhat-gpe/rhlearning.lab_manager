@@ -35,12 +35,12 @@
         name: "{{ pip_dependencies }}"
         state: present
 
-    - name: Copy requirements.txt to target for FTL virtualenv
+    - name: Copy requirements.txt to target for lm virtualenv
       copy:
         src: requirements_python2.txt
         dest: /tmp/requirements.txt
 
-    - name: "Create virtualenv {{ virtual_env_name }} for FTL"
+    - name: "Create virtualenv {{ virtual_env_name }} for lm"
       pip:
         requirements: /tmp/requirements.txt
         virtualenv: "{{ virtual_env_home }}/{{ virtual_env_name }}"
@@ -62,12 +62,12 @@
         state: present
         executable: /usr/bin/pip3
 
-    - name: Copy requirements.txt to target for FTL virtualenv
+    - name: Copy requirements.txt to target for lm virtualenv
       copy:
         src: requirements_python3.txt
         dest: /tmp/requirements.txt
 
-    - name: "Create virtualenv {{ virtual_env_name }} for FTL"
+    - name: "Create virtualenv {{ virtual_env_name }} for lm"
       pip:
         requirements: /tmp/requirements.txt
         virtualenv: "{{ virtual_env_home }}/{{ virtual_env_name }}"
