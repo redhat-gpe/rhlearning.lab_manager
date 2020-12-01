@@ -9,7 +9,7 @@
 
   - name: Check cluster-admin for local-admin group
     include_role:
-      name: grader_check_oc_command
+      name: rhlearning.lab_manager.grader_check_oc_command
     vars:
       task_description_message: Create cluster-admin cluster role binding for local-admin group
       oc_command_description: Test of 'oc auth can-i --as=alice --as-group=local-admin foo bar'
@@ -26,7 +26,7 @@
 
   - name: Login as LDAP user david
     include_role:
-      name: grader_check_oc_command
+      name: rhlearning.lab_manager.grader_check_oc_command
     vars:
       task_description_message: Login as LDAP ocp-platorm user david
       oc_command: >-
@@ -36,7 +36,7 @@
 
   - name: Check if user david can has sudoer access
     include_role:
-      name: grader_check_oc_command
+      name: rhlearning.lab_manager.grader_check_oc_command
     vars:
       task_description_message: Check ocp-platform group sudoer access
       oc_command: >-
@@ -45,7 +45,7 @@
 
   - name: Check self-provisioners access
     include_role:
-      name: grader_check_ocp_resource
+      name: rhlearning.lab_manager.grader_check_ocp_resource
     vars:
       task_description_message: Check that self-provisioners is disabled
       resource_api_version: rbac.authorization.k8s.io/v1

@@ -8,7 +8,7 @@
   tasks:
     - name: Check the worker machinesets
       include_role:
-        name: grader_check_ocp_resource
+        name: rhlearning.lab_manager.grader_check_ocp_resource
       vars:
         task_description_message: Check that the correct MachineSet objects exist
         resource_api_version: machine.openshift.io/v1beta1

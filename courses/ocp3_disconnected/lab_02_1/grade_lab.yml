@@ -12,7 +12,7 @@
 
   - name: Check if the Web Console Route exists
     include_role:
-      name: grader_check_ocp_route_exists
+      name: rhlearning.lab_manager.grader_check_ocp_route_exists
     vars:
       task_description_message: Check if the Web Console route exists
       route_name: "console"
@@ -22,21 +22,21 @@
   # Check nodes
   - name: Check if Master 3 exists
     include_role:
-      name: grader_check_ocp_node_exists
+      name: rhlearning.lab_manager.grader_check_ocp_node_exists
     vars:
       task_description_message: Check if Master 3 exists
       node_name: "master3.{{ guid }}.internal"
       student_error_message: "Master 3 does not exist"
   - name: Check if Infranode 1 exists
     include_role:
-      name: grader_check_ocp_node_exists
+      name: rhlearning.lab_manager.grader_check_ocp_node_exists
     vars:
       task_description_message: Check if Infranode 1 exists
       node_name: "infranode1.{{ guid }}.internal"
       student_error_message: "Infranode 1 does not exist"
   - name: Check if Infranode 2 exists
     include_role:
-      name: grader_check_ocp_node_exists
+      name: rhlearning.lab_manager.grader_check_ocp_node_exists
     vars:
       task_description_message: Check if Infranode 2 exists
       node_name: "infranode2.{{ guid }}.internal"
@@ -45,7 +45,7 @@
   # Check Pods
   - name: Check that the Prometheus pod is running
     include_role:
-      name: grader_check_ocp_pod_exists
+      name: rhlearning.lab_manager.grader_check_ocp_pod_exists
     vars:
       task_description_message: Check that the Prometheus pod is running
       pod_name: "prometheus-k8s-0"

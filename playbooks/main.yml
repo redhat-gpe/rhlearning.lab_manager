@@ -9,7 +9,7 @@
   roles:
 
     - when: purpose == "grade_lab"
-      name: lm_run_init
+      name: rhlearning.lab_manager.lm_run_init
 
 - name: "Import and run the {{ purpose }} playbooks"
   import_playbook: "./courses/{{ course_id }}/lab_{{ lab_id }}/{{ purpose }}.yml"
@@ -25,5 +25,5 @@
 
   roles:
     - when: purpose == "grade_lab"
-      name: lm_run_finish
+      name: rhlearning.lab_manager.lm_run_finish
 ...

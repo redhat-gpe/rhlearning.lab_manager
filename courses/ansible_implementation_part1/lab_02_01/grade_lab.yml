@@ -7,7 +7,7 @@
 
     - name: Section 3
       include_role: 
-        name: grader_check_user_exists
+        name: rhlearning.lab_manager.grader_check_user_exists
       vars:
         user: devops
         task_description_message: Check user devops exists

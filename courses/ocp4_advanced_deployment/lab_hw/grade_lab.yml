@@ -12,7 +12,7 @@
 
   - name: Check if I can login as cluster admin
     include_role:
-      name: grader_check_oc_command
+      name: rhlearning.lab_manager.grader_check_oc_command
     vars:
       oc_command: "whoami --show-server"
       task_description_message: Check if I can access the cluster
@@ -22,7 +22,7 @@
 
   - name: Check if there are 3 masters
     include_role:
-      name: grader_check_ocp_node_label
+      name: rhlearning.lab_manager.grader_check_ocp_node_label
     vars:
       node_label: "node-role.kubernetes.io/master="
       node_count: 3
@@ -31,7 +31,7 @@
 
   - name: Check if there are 2 infra
     include_role:
-      name: grader_check_ocp_node_label
+      name: rhlearning.lab_manager.grader_check_ocp_node_label
     vars:
       node_label: "node-role.kubernetes.io/infra="
       node_count: 2
@@ -40,7 +40,7 @@
 
   - name: Check if there are 2 workers
     include_role:
-      name: grader_check_ocp_node_label
+      name: rhlearning.lab_manager.grader_check_ocp_node_label
     vars:
       node_label: "node-role.kubernetes.io/worker="
       node_count: 4  # because infra are workers too
@@ -49,7 +49,7 @@
 
   - name: Check if the image registry is running on infra nodes
     include_role:
-      name: grader_check_ocp_pod_node
+      name: rhlearning.lab_manager.grader_check_ocp_pod_node
     vars:
       node_label: node-role.kubernetes.io/infra=
       pod_label: docker-registry=default
@@ -58,7 +58,7 @@
 
   - name: Check if cluster monitoring is running on infra nodes
     include_role:
-      name: grader_check_ocp_pod_node
+      name: rhlearning.lab_manager.grader_check_ocp_pod_node
     vars:
       node_label: node-role.kubernetes.io/infra=
       pod_label: app=prometheus
@@ -67,7 +67,7 @@
 
   - name: Check if Elasticsearch is running on infra nodes
     include_role:
-      name: grader_check_ocp_pod_node
+      name: rhlearning.lab_manager.grader_check_ocp_pod_node
     vars:
       node_label: node-role.kubernetes.io/infra=
       pod_label: component=elasticsearch
@@ -76,7 +76,7 @@
 
   - name: Check if the CPU request is 500m for Elasticsearch
     include_role:
-      name: grader_check_ocp_resource
+      name: rhlearning.lab_manager.grader_check_ocp_resource
     vars:
       resource_kind: Elasticsearch
       resource_namespace: openshift-logging
@@ -90,7 +90,7 @@
 
   - name: Check if the memory request is 4Gi for Elasticsearch
     include_role:
-      name: grader_check_ocp_resource
+      name: rhlearning.lab_manager.grader_check_ocp_resource
     vars:
       resource_kind: Elasticsearch
       resource_namespace: openshift-logging
@@ -104,7 +104,7 @@
 
   - name: Check if the storage size is 20G for Elasticsearch
     include_role:
-      name: grader_check_ocp_resource
+      name: rhlearning.lab_manager.grader_check_ocp_resource
     vars:
       resource_kind: Elasticsearch
       resource_namespace: openshift-logging
@@ -118,7 +118,7 @@
 
   - name: Check if there are 2 routers
     include_role:
-      name: grader_check_ocp_pod_label
+      name: rhlearning.lab_manager.grader_check_ocp_pod_label
     vars:
       pod_label: ingresscontroller.operator.openshift.io/deployment-ingresscontroller=default
       pod_count: 2
@@ -127,7 +127,7 @@
 
   - name: Check if the routers are running on infra nodes
     include_role:
-      name: grader_check_ocp_pod_node
+      name: rhlearning.lab_manager.grader_check_ocp_pod_node
     vars:
       node_label: node-role.kubernetes.io/infra=
       pod_label: ingresscontroller.operator.openshift.io/deployment-ingresscontroller=default
@@ -136,7 +136,7 @@
 
   - name: Check if 5 user identities exist
     include_role:
-      name: grader_check_ocp_identity
+      name: rhlearning.lab_manager.grader_check_ocp_identity
     vars:
       id_count: 5
       task_description_message: Check if 5 user identities exist
@@ -144,7 +144,7 @@
 
   - name: Check if john is a cluster admin
     include_role:
-      name: grader_check_oc_command
+      name: rhlearning.lab_manager.grader_check_oc_command
     vars:
       oc_command: "auth can-i list nodes --as john"
       task_description_message: Check if john is a cluster admin
@@ -156,7 +156,7 @@
 
   - name: Check LimitRange in project george-test
     include_role:
-      name: grader_check_ocp_resource
+      name: rhlearning.lab_manager.grader_check_ocp_resource
     vars:
       resource_kind: LimitRange
       resource_namespace: george-test
@@ -166,7 +166,7 @@
 
   - name: Check if the default CPU request is 500m in the LimitRange
     include_role:
-      name: grader_check_ocp_resource
+      name: rhlearning.lab_manager.grader_check_ocp_resource
     vars:
       resource_kind: LimitRange
       resource_namespace: george-test
@@ -180,7 +180,7 @@
 
   - name: Check if the default memory request is 500Mi in the LimitRange
     include_role:
-      name: grader_check_ocp_resource
+      name: rhlearning.lab_manager.grader_check_ocp_resource
     vars:
       resource_kind: LimitRange
       resource_namespace: george-test
@@ -194,7 +194,7 @@
 
   - name: Check ResourceQuota in project george-test
     include_role:
-      name: grader_check_ocp_resource
+      name: rhlearning.lab_manager.grader_check_ocp_resource
     vars:
       resource_kind: ResourceQuota
       resource_namespace: george-test
@@ -204,7 +204,7 @@
 
   - name: Check if the CPU quota is 4 in the project george-test
     include_role:
-      name: grader_check_ocp_resource
+      name: rhlearning.lab_manager.grader_check_ocp_resource
     vars:
       resource_kind: ResourceQuota
       resource_namespace: george-test
@@ -218,7 +218,7 @@
 
   - name: Check if the storage request quota is 20G in the project george-test
     include_role:
-      name: grader_check_ocp_resource
+      name: rhlearning.lab_manager.grader_check_ocp_resource
     vars:
       resource_kind: ResourceQuota
       resource_namespace: george-test
@@ -232,7 +232,7 @@
 
   - name: Check NetworkPolicy allow-same-namespace in project george-test
     include_role:
-      name: grader_check_ocp_resource
+      name: rhlearning.lab_manager.grader_check_ocp_resource
     vars:
       resource_kind: NetworkPolicy
       resource_namespace: george-test
@@ -242,7 +242,7 @@
 
   - name: Check NetworkPolicy allow-from-openshift-ingress in project george-test
     include_role:
-      name: grader_check_ocp_resource
+      name: rhlearning.lab_manager.grader_check_ocp_resource
     vars:
       resource_kind: NetworkPolicy
       resource_namespace: george-test

@@ -12,7 +12,7 @@
  
   - name: Check that the Deployment Config printenv exists
     include_role:
-      name: grader_check_ocp_resource
+      name: rhlearning.lab_manager.grader_check_ocp_resource
     vars:
       task_description_message: Check that the Deployment Config `printenv` exists.
       student_error_message: "Deployment Config `printenv` does not exist in project ${GUID}-development."
@@ -24,7 +24,7 @@
   # This doesn't work. Not sure why
   # - name: Check that the Deployment Config printenv exists has the correct volumeMounts
   #   include_role:
-  #     name: grader_check_ocp_resource
+  #     name: rhlearning.lab_manager.grader_check_ocp_resource
   #   vars:
   #     task_description_message: Check that the Deployment Config `printenv` has the correct volumeMounts definition
   #     resource_api_version: apps.openshift.io/v1

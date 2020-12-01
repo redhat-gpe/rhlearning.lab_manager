@@ -8,7 +8,7 @@
   tasks:
   - name: Check HTPasswd users
     include_role:
-      name: grader_check_ocp_resource
+      name: rhlearning.lab_manager.grader_check_ocp_resource
     vars:
       task_description_message: Check HTPasswd user {{ user_name }}
       resource_api_version: user.openshift.io/v1
@@ -23,7 +23,7 @@
 
   - name: Check LDAP users
     include_role:
-      name: grader_check_ocp_resource
+      name: rhlearning.lab_manager.grader_check_ocp_resource
     vars:
       task_description_message: Check LDAP user {{ user_name }}
       resource_api_version: user.openshift.io/v1
@@ -38,7 +38,7 @@
 
   - name: Check that kubeadmin secret does not exist
     include_role:
-      name: grader_check_ocp_resource
+      name: rhlearning.lab_manager.grader_check_ocp_resource
     vars:
       task_description_message: Check if the kubeadmin secret still exists
       resource_kind: Secret

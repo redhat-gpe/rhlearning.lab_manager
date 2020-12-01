@@ -7,21 +7,21 @@
 
     - name: Section 5
       include_role: 
-        name: grader_check_package_installed
+        name: rhlearning.lab_manager.grader_check_package_installed
       vars:
         package: httpd
         task_description_message: Check package httpd installed 
 
     - name: Section 5
       include_role: 
-        name: grader_check_service_started
+        name: rhlearning.lab_manager.grader_check_service_started
       vars:
         service: httpd
         task_description_message: Check service httpd started
 
     - name: Section 5
       include_role: 
-        name: grader_check_service_enabled
+        name: rhlearning.lab_manager.grader_check_service_enabled
       vars:
         service: httpd
         task_description_message: Check service httpd enabled

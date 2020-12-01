@@ -11,7 +11,7 @@
       guid: "{{ lookup('env','GUID') }}"
   - name: Check the CakePHP Route exists
     include_role:
-      name: grader_check_ocp_route_exists
+      name: rhlearning.lab_manager.grader_check_ocp_route_exists
     vars:
       task_description_message: Check if the CakePHP route exists
       route_name: "cakephp-mysql-example"
@@ -20,7 +20,7 @@
 
   - name: Check the httpd Route exists
     include_role:
-      name: grader_check_ocp_route_exists
+      name: rhlearning.lab_manager.grader_check_ocp_route_exists
     vars:
       task_description_message: Check if the HTTPD route exists
       route_name: "httpd-deployment"

@@ -9,7 +9,7 @@
 
   - name: Check definition of group local-admin
     include_role:
-      name: grader_check_ocp_resource
+      name: rhlearning.lab_manager.grader_check_ocp_resource
     vars:
       task_description_message: Check the definition of the group local-admin
       resource_kind: Group
@@ -22,7 +22,7 @@
 
   - name: Check LDAP groups
     include_role:
-      name: grader_check_ocp_resource
+      name: rhlearning.lab_manager.grader_check_ocp_resource
     vars:
       task_description_message: Check LDAP groups sync for {{ group_name }}
       resource_kind: Group

@@ -8,7 +8,7 @@
   tasks:
   - name: Check the second config file exists
     include_role:
-      name: grader_check_file_exists
+      name: rhlearning.lab_manager.grader_check_file_exists
     vars:
       task_description_message: Check if the new-config file exists
       file: "$HOME/.kube/new-config"

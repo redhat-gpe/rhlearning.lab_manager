@@ -12,7 +12,7 @@
 
   - name: Check the Deployment exists
     include_role:
-      name: grader_check_ocp_deployment_exists
+      name: rhlearning.lab_manager.grader_check_ocp_deployment_exists
     vars:
       task_description_message: Check if the deployment ocp-probe exists and has 3 replicas
       deployment_name: "ocp-probe"

@@ -8,7 +8,7 @@
 
     - name: Section 2
       include_role:
-        name: grader_check_always_succeed
+        name: rhlearning.lab_manager.grader_check_always_succeed
       vars:
         student_error_message: Grader failed
         task_description_message: Run lab grader on grader host

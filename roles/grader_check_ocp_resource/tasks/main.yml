@@ -68,6 +68,6 @@
 
 - name: Import logging tasks
   import_role:
-    name: lm_run_log_grade_to_log
+    name: rhlearning.lab_manager.lm_run_log_grade_to_log
   vars:
     grader_output_message: "{{ output_message }}"
