@@ -3,7 +3,7 @@
 # Don't run as root user
 if [ $UID -eq 0 ];
 then
-  echo "Do not run as root, exiting..."
+  echo "Do not run as the root user, exiting..."
   exit 1
 fi
 
@@ -13,7 +13,7 @@ if [[ ${PURPOSE} != "grade_lab" ]] && [[ $# -ne 2 ]];
 then  
   echo "Usage: ${PURPOSE} course-name lab-number"
   echo
-  echo "lab-number in format 03_01"
+  echo "lab-number should be in the format of x_y. Example: 03_01"
   exit 1
 fi  
 
@@ -48,7 +48,8 @@ then
 fi
 
 export GRADER_REPORT=/tmp/grading_dir/grading_report.txt
-export LOG_FILE=/tmp/ansible_grading.log
+export DATE=$(date +"%Y%m%d")
+export LOG_FILE=/tmp/grading_"$DATE".log
 
 # Clean up - next bit is a job for ansible
 
@@ -87,7 +88,7 @@ export TOWER_VERIFY_SSL=false
   -e purpose=${PURPOSE}                                   \
   -e course_id=${COURSE_ID}                               \
   -e lab_id=${LAB_ID}                                     \
-  -e student_id=${STUDENT_ID}    > ${LOG_FILE} 2>&1 )
+  -e student_id=${STUDENT_ID}    2> ${LOG_FILE} 2>&1 | tee ${LOG_FILE} | sed -n 's/LAB_MANAGER_OUTPUT//p' )
 
 if [ $? -ne 0 ]
 then
