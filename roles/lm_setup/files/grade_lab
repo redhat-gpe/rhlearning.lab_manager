@@ -51,13 +51,6 @@ export GRADER_REPORT=/tmp/grading_dir/grading_report.txt
 export DATE=$(date +"%Y%m%d")
 export LOG_FILE=/tmp/grading_"$DATE".log
 
-# Clean up - next bit is a job for ansible
-
-#if [ -f ${LOG_FILE} ]; 
-#then
-#  mv  ${LOG_FILE} ${LOG_FILE}-previous
-#fi
-
 
 # Make sure ansible finds the correct roles if it loads a new ansible.cfg
 
