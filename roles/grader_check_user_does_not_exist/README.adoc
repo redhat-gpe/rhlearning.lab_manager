@@ -1,10 +1,10 @@
-== README lm_check_package_installed
+== README lm_check_user_does_not_exist
 
-Checks if a package is installed, if not logs a failure message for student
+Checks if a user doesn't exist, if it does, log a failure message for student
 
 === Arguments:
 
-* `package` - name of the package e.g. `httpd`
+* `user` - name of the user e.g. `bob`
 * `grader_output_message` - message to return to student on failure 
 * `section` - Lab section or stage
 
@@ -13,18 +13,17 @@ Checks if a package is installed, if not logs a failure message for student
 
 [source,yaml]
 ----
-- name: Section 6.4.1, Check student has installed Apache
-  role: lm_check_package_installed
+- name: Section 6.4.1, Check use does not exist
+  role: lm_check_user_does_not_exist
   vars:
     section_number: 6.4.1
-    task_description_message: Package httpd not installed
-    package: httpd
+    task_description_message: "User {{ user }} exists when it should not"
+    user: bob
 ----
 
 === Sample Output
 
 [source,bash]
 ----
-  Section: 6.4.1, node1, Package httpd not installed
-  Section: 6.4.1, node2, Package httpd not installed
+  Section: 6.4.1, node1, User bob exists when it should not
 ----

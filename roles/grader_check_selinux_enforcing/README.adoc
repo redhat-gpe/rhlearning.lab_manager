@@ -1,1 +1,27 @@
----
+== README lm_check_selinux_enforcing
+
+Checks if selinux enabled, if not logs a failure message for student
+
+=== Arguments:
+
+* `grader_output_message` - message to return to student on failure 
+* `section` - Lab section or stage
+
+
+=== Usage Example
+
+[source,yaml]
+----
+- name: Section 6.4.1, Check student has installed Apache
+  role: lm_check_selinux_enforcing
+  vars:
+    section_number: 6.4.1
+    task_description_message: SeLinux not enforcing.
+----
+
+=== Sample Output
+
+[source,bash]
+----
+  Section: 6.4.1, node1, SeLinux not enforcing.
+----

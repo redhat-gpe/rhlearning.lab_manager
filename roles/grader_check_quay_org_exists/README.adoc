@@ -1,10 +1,10 @@
 == README lm_check_package_installed
 
-Checks if a service is started, if not logs a failure message for student
+Checks if a quay org exists, if not logs a failure message for student
 
 === Arguments:
 
-* `service` - name of the service e.g. `httpd`
+* `quay_org` - Name of the org to check for.
 * `grader_output_message` - message to return to student on failure 
 * `section` - Lab section or stage
 
@@ -13,17 +13,17 @@ Checks if a service is started, if not logs a failure message for student
 
 [source,yaml]
 ----
-- name: Section 6.4.1, Check student has installed Apache
+- name: Section 6.4.1, Check specified Quay User exists.
   role: lm_check_package_installed
   vars:
     section_number: 6.4.1
-    task_description_message: Service httpd not started
-    service: httpd
+    task_description_message: Quay User {{ quay_org }} doesn't exist.
+    quay_org: bob
 ----
 
 === Sample Output
 
 [source,bash]
 ----
-  Section: 6.4.1, node1, Service httpd not started.
+  Section: 6.4.1, node1, Quay org bob doesn't exist.
 ----

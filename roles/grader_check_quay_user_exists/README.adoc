@@ -1,0 +1,29 @@
+== README lm_check_package_installed
+
+Checks if a quay user exists, if not logs a failure message for student
+
+=== Arguments:
+
+* `quay_user_name` - Name of the user to check for.
+* `grader_output_message` - message to return to student on failure 
+* `section` - Lab section or stage
+
+
+=== Usage Example
+
+[source,yaml]
+----
+- name: Section 6.4.1, Check specified Quay User exists.
+  role: lm_check_package_installed
+  vars:
+    section_number: 6.4.1
+    task_description_message: Quay User {{ quay_user_name }} doesn't exist.
+    quay_user_name: bob
+----
+
+=== Sample Output
+
+[source,bash]
+----
+  Section: 6.4.1, node1, Quay User bob doesn't exist.
+----

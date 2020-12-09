@@ -1,10 +1,10 @@
 == README lm_check_package_installed
 
-Checks if a service is started, if not logs a failure message for student
+Checks if a package is installed, if not logs a failure message for student
 
 === Arguments:
 
-* `service` - name of the service e.g. `httpd`
+* `package` - name of the package e.g. `httpd`
 * `grader_output_message` - message to return to student on failure 
 * `section` - Lab section or stage
 
@@ -17,13 +17,14 @@ Checks if a service is started, if not logs a failure message for student
   role: lm_check_package_installed
   vars:
     section_number: 6.4.1
-    task_description_message: Service httpd not started
-    service: httpd
+    task_description_message: Package httpd not installed
+    user_name: bob
 ----
 
 === Sample Output
 
 [source,bash]
 ----
-  Section: 6.4.1, node1, Service httpd not started.
+  Section: 6.4.1, node1, Package httpd not installed
+  Section: 6.4.1, node2, Package httpd not installed
 ----
