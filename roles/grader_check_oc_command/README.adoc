@@ -1,10 +1,10 @@
-== README lm_check_package_installed
+== README lm_check_oc_command
 
-Checks if a package is installed, if not logs a failure message for student
+Checks if an OC command works, if not logs a failure message for student
 
 === Arguments:
 
-* `package` - name of the package e.g. `httpd`
+* `oc_command` - name of the package e.g. `get pods`
 * `grader_output_message` - message to return to student on failure 
 * `section` - Lab section or stage
 
@@ -13,18 +13,17 @@ Checks if a package is installed, if not logs a failure message for student
 
 [source,yaml]
 ----
-- name: Section 6.4.1, Check student has installed Apache
-  role: lm_check_package_installed
+- name: Section 6.4.1, check OC command.
+  role: lm_check_oc_command
   vars:
     section_number: 6.4.1
-    task_description_message: Package httpd not installed
-    package: httpd
+    task_description_message: Command {{ oc_command }} did not work.
+    oc_command: 'get pods'
 ----
 
 === Sample Output
 
 [source,bash]
 ----
-  Section: 6.4.1, node1, Package httpd not installed
-  Section: 6.4.1, node2, Package httpd not installed
+  Section: 6.4.1, node1, Command get pods did not work
 ----
