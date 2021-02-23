@@ -57,7 +57,7 @@
 
     - name: Import logging role
       import_role:
-        name: lm_run_log_grade_to_log
+        name: rhlearning.lab_manager.lm_run_log_grade_to_log
       vars:
         task_description_message: "Check if gitlab project repo has 2 webhooks"
 
@@ -97,7 +97,7 @@
       
     - name: Import logging role
       import_role:
-        name: lm_run_log_grade_to_log
+        name: rhlearning.lab_manager.lm_run_log_grade_to_log
       vars:
         task_description_message: "Check if Ansible Tower has gitlab token credential"
 
@@ -162,7 +162,7 @@
       
     - name: Import logging role
       import_role:
-        name: lm_run_log_grade_to_log
+        name: rhlearning.lab_manager.lm_run_log_grade_to_log
       vars:
         task_description_message: "Check if 'App deployer - Test Env' Job template has webhook enabled"
 
@@ -178,7 +178,7 @@
       
     - name: Import logging role
       import_role:
-        name: lm_run_log_grade_to_log
+        name: rhlearning.lab_manager.lm_run_log_grade_to_log
       vars:
         task_description_message: "Check if 'App deployer - Prod Env' Job template has webhook enabled"
 
@@ -206,7 +206,7 @@
       
     - name: Import logging role
       import_role:
-        name: lm_run_log_grade_to_log
+        name: rhlearning.lab_manager.lm_run_log_grade_to_log
       vars:
         task_description_message: "Check if Test Env website is accessible"
 
@@ -235,7 +235,7 @@
       
     - name: Import logging role
       import_role:
-        name: lm_run_log_grade_to_log
+        name: rhlearning.lab_manager.lm_run_log_grade_to_log
       vars:
         task_description_message: Check if Prod Env website is accessible
 

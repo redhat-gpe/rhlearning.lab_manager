@@ -7,7 +7,7 @@
 
     - name: Section 5
       include_role:
-        name: grader_check_package_installed
+        name: rhlearning.lab_manager.grader_check_package_installed
       vars:
         package:
           - httpd
@@ -16,7 +16,7 @@
 
     - name: Section 5
       include_role:
-        name: grader_check_service_started
+        name: rhlearning.lab_manager.grader_check_service_started
       vars:
         service:
           - httpd
@@ -25,7 +25,7 @@
 
     - name: Section 5
       include_role:
-        name: grader_check_service_enabled
+        name: rhlearning.lab_manager.grader_check_service_enabled
       vars:
         service:
           - httpd
@@ -34,7 +34,7 @@
 
     - name: Section 5
       include_role:
-        name: grader_check_file_exists
+        name: rhlearning.lab_manager.grader_check_file_exists
       vars:
         file:
           - '/etc/httpd/conf.d/vhost.conf'
@@ -43,5 +43,5 @@
 
     - name: Section 5
       include_role:
-        name: grader_check_selinux_enforcing
+        name: rhlearning.lab_manager.grader_check_selinux_enforcing
 ...

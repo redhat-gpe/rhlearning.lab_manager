@@ -7,14 +7,14 @@
   roles:      # All lab tests go here
 
     - name: Section 3
-      role: grader_check_user_exists
+      role: rhlearning.lab_manager.grader_check_user_exists
       vars:
         user: devops
         student_error_message: User devops does not exist
         task_description_message: Check user devops exists
 
     - name: Section 3
-      role: grader_check_user_exists
+      role: rhlearning.lab_manager.grader_check_user_exists
       vars:
         user: root
         #section_number: 3.2
@@ -22,7 +22,7 @@
         task_description_message: Check user root exists
 
     - name: Section 3
-      role: grader_check_user_exists
+      role: rhlearning.lab_manager.grader_check_user_exists
       vars:
         user: lp
         #section_number: 3.2
@@ -30,7 +30,7 @@
         task_description_message: Check user lp exists
 
     - name: Section 3
-      role: grader_check_user_exists
+      role: rhlearning.lab_manager.grader_check_user_exists
       vars:
         user: devops
         #section_number: 3.2

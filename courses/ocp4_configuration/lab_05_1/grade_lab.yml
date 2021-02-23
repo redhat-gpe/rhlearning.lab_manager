@@ -9,7 +9,7 @@
 
   - name: Check namespaces for portalapp and paymentapp
     include_role:
-      name: grader_check_ocp_resource
+      name: rhlearning.lab_manager.grader_check_ocp_resource
     vars:
       task_description_message: Check portalapp and paymentapp namespaces exist
       resource_api_version: v1
@@ -28,7 +28,7 @@
 
   - name: Check portapp dev/test access
     include_role:
-      name: grader_check_oc_command
+      name: rhlearning.lab_manager.grader_check_oc_command
     vars:
       task_description_message: Check if group {{ check.group }} is admin for {{ check.namespace }}
       oc_command: >-
@@ -55,7 +55,7 @@
       
   - name: Check payment namespaces for sinatra deployment configs
     include_role:
-      name: grader_check_ocp_resource
+      name: rhlearning.lab_manager.grader_check_ocp_resource
     vars:
       task_description_message: Check sinatra deployment config in {{ check.namespace }}
       resource_api_version: apps.openshift.io/v1
@@ -82,7 +82,7 @@
 
   - name: Check paymentapp-dev namespace for image stream tags
     include_role:
-      name: grader_check_ocp_resource
+      name: rhlearning.lab_manager.grader_check_ocp_resource
     vars:
       task_description_message: Check for image stream tag {{ image_stream_tag }} in paymentapp-dev
       resource_api_version: image.openshift.io/v1
@@ -99,7 +99,7 @@
 
   - name: Check image pull access rights
     include_role:
-      name: grader_check_oc_command
+      name: rhlearning.lab_manager.grader_check_oc_command
     vars:
       task_description_message: Check if service accounts in {{ namespace }} can pull images from paymentapp-dev
       oc_command: >-
@@ -117,7 +117,7 @@
 
   - name: Check if group ocp-production has registry-viewer access to paymentapp-dev
     include_role:
-      name: grader_check_oc_command
+      name: rhlearning.lab_manager.grader_check_oc_command
     vars:
       task_description_message: Check if group ocp-production has registry-viewer access to paymentapp-dev
       oc_command: >-
@@ -130,7 +130,7 @@
 
   - name: Check SCC anyuid for mygitlab service accounts
     include_role:
-      name: grader_check_ocp_resource
+      name: rhlearning.lab_manager.grader_check_ocp_resource
     vars:
       task_description_message: Check SCC anyuid for mygitlab service accounts
       resource_kind: SecurityContextConstraints

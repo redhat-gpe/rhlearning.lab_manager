@@ -15,7 +15,7 @@
 
   - name: "Check that tasks route in {{ guid }}-tasks-prod points to the Green Service"
     include_role:
-      name: grader_check_ocp_resource
+      name: rhlearning.lab_manager.grader_check_ocp_resource
     vars:
       task_description_message: "Check that tasks route in {{ guid }}-tasks-prod points to the green service"
       resource_api_version: route.openshift.io/v1

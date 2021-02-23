@@ -11,7 +11,7 @@
   tasks:
     - name: Check the clusterversion
       include_role:
-        name: grader_check_ocp_resource
+        name: rhlearning.lab_manager.grader_check_ocp_resource
       vars:
         task_description_message: Check that the cluster version is correct.
         resource_api_version: config.openshift.io/v1
@@ -30,7 +30,7 @@
 
     - name: Verify registry is accessible
       include_role:
-        name: grader_check_uri_response
+        name: rhlearning.lab_manager.grader_check_uri_response
       vars:
         task_description_message: Check that the mirror registry is accessible.
         url: "https://utilityvm.example.com:5000/v2/_catalog"
@@ -39,7 +39,7 @@
       
     - name: Verify the OpenShift registry is available
       include_role:
-        name: grader_check_ocp_resource
+        name: rhlearning.lab_manager.grader_check_ocp_resource
       vars:
         task_description_message: Check that the OpenShift registry is available.
         resource_api_version: extensions/v1beta1

@@ -12,7 +12,7 @@
 
   - name: Check local container image exists
     include_role:
-      name: grader_check_local_image_exists
+      name: rhlearning.lab_manager.grader_check_local_image_exists
     vars:
       image_name: "localhost/buildah-hello"
       task_description_message: "Check if the {{ image_name }} exists"
@@ -20,7 +20,7 @@
 
   - name: Check container working
     include_role:
-      name: grader_check_container_runs
+      name: rhlearning.lab_manager.grader_check_container_runs
     vars:
       image_name: "localhost/buildah-hello"
       expected_output: "Hello, world!"
@@ -29,7 +29,7 @@
 
   - name: Check S2I BuildConfig exists
     include_role:
-      name: grader_check_ocp_buildconfig_exists
+      name: rhlearning.lab_manager.grader_check_ocp_buildconfig_exists
     vars:
       task_description_message: Check if the S2I BuildConfig exists
       buildconfig_name: "tasks"

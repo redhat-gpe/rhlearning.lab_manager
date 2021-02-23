@@ -12,7 +12,7 @@
 
   - name: Check Quay user exists
     include_role:
-      name: grader_check_quay_user_exists
+      name: rhlearning.lab_manager.grader_check_quay_user_exists
     vars:
       quay_user_name: myviewuser
       task_description_message: Check if the Quay user exists
@@ -20,7 +20,7 @@
 
   - name: Check Quay user exists
     include_role:
-      name: grader_check_quay_user_exists
+      name: rhlearning.lab_manager.grader_check_quay_user_exists
     vars:
       quay_user_name: myedituser # The username you want to check
       task_description_message: Check if the Quay user exists
@@ -28,7 +28,7 @@
 
   - name: Check Quay user exists
     include_role:
-      name: grader_check_quay_user_exists
+      name: rhlearning.lab_manager.grader_check_quay_user_exists
     vars:
       quay_user_name: myotheruser
       task_description_message: Check if the Quay user exists
@@ -36,7 +36,7 @@
   
   - name: Check Quay org exists
     include_role:
-      name: grader_check_quay_org_exists
+      name: rhlearning.lab_manager.grader_check_quay_org_exists
     vars:
       quay_org_name: myfirstquayorg
       task_description_message: Check if the Quay Organization exists
@@ -44,7 +44,7 @@
 
   - name: Check if container runs correctly
     include_role:
-      name: grader_check_container_runs
+      name: rhlearning.lab_manager.grader_check_container_runs
     vars:
       quay_namespace: myquayuser
       image_name: quay-{{ guid }}.apps.shared-na4.na4.openshift.opentlc.com/myquayuser/hello-php:v0.3/{{ quay_namespace }}/hello-php:v0.3

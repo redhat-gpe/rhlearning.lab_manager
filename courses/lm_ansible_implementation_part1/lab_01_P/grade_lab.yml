@@ -7,7 +7,7 @@
   roles:      # All lab tests go here
 
     - name: Section 2
-      role: grader_check_ssh_connectivity
+      role: rhlearning.lab_manager.grader_check_ssh_connectivity
       vars:
         student_error_message: Failed to ssh connect to host
         task_description_message: ssh connectivity test aka ping

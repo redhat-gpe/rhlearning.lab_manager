@@ -12,7 +12,7 @@
 
   - name: Check the Pod exists
     include_role:
-      name: grader_check_ocp_pod_exists
+      name: rhlearning.lab_manager.grader_check_ocp_pod_exists
     vars:
       task_description_message: Check if the pod cakephp-mysql-example-3-deploy exists
       pod_name: "cakephp-mysql-example-3-deploy"

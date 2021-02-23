@@ -7,7 +7,7 @@
   roles:      # All lab tests go here
 
     - name: Section 2
-      role: grader_check_always_fail
+      role: rhlearning.lab_manager.grader_check_always_fail
       vars:
         student_error_message: Grader failed
         task_description_message: lab 01_F set to always FAIL

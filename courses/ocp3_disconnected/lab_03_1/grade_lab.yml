@@ -12,7 +12,7 @@
 
   - name: Check if Nexus Deployment Config has 1 replica
     include_role:
-      name: grader_check_ocp_deploymentconfig_exists
+      name: rhlearning.lab_manager.grader_check_ocp_deploymentconfig_exists
     vars:
       task_description_message: Check if Nexus Deployment Config has 1 replica
       deploymentconfig_name: "nexus3"
@@ -22,7 +22,7 @@
 
   - name: Check if Gogs Deployment Config has 1 replica
     include_role:
-      name: grader_check_ocp_deploymentconfig_exists
+      name: rhlearning.lab_manager.grader_check_ocp_deploymentconfig_exists
     vars:
       task_description_message: Check if Gogs Deployment Config has 1 replica
       deploymentconfig_name: "gogs"
@@ -32,7 +32,7 @@
 
   - name: Check if Tasks Deployment Config has 1 replica
     include_role:
-      name: grader_check_ocp_deploymentconfig_exists
+      name: rhlearning.lab_manager.grader_check_ocp_deploymentconfig_exists
     vars:
       task_description_message: Check if Tasks Deployment Config has 1 replica
       deploymentconfig_name: "tasks"

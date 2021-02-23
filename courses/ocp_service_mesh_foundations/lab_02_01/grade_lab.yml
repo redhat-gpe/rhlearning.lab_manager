@@ -12,7 +12,7 @@
 
   - name: Check that the Deployment istio-operator exists
     include_role:
-      name: grader_check_ocp_resource
+      name: rhlearning.lab_manager.grader_check_ocp_resource
     vars:
       task_description_message: Check that the Deployment `istio-operator` exists.
       student_error_message: "Deployment Config `istio-operator` does not exist in project istio-operator."
@@ -23,7 +23,7 @@
 
   # - name: Check that the Deployment 3scale-istio-adapter exists
   #   include_role:
-  #     name: grader_check_ocp_resource
+  #     name: rhlearning.lab_manager.grader_check_ocp_resource
   #   vars:
   #     task_description_message: Check that the Deployment `3scale-istio-adapter` exists.
   #     student_error_message: "Deployment Config `3scale-istio-adapter` does not exist in project istio-system."
@@ -34,7 +34,7 @@
 
   - name: Check the Kiali Route exists
     include_role:
-      name: grader_check_ocp_route_exists
+      name: rhlearning.lab_manager.grader_check_ocp_route_exists
     vars:
       task_description_message: Check that the Kiali route exists
       route_name: kiali

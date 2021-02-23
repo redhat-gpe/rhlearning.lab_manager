@@ -8,7 +8,7 @@
   tasks:
   - name: Check for the example deployment
     include_role:
-      name: grader_check_ocp_deployment_exists
+      name: rhlearning.lab_manager.grader_check_ocp_deployment_exists
     vars:
       task_description_message: Check that the 'example' deployment exists
       student_error_message: "Deployment `example` does not exist."
@@ -17,7 +17,7 @@
 
   - name: Check for project request template
     include_role:
-      name: grader_check_ocp_resource
+      name: rhlearning.lab_manager.grader_check_ocp_resource
     vars:
       task_description_message: Check that the default project request template exists
       resource_api_version: config.openshift.io/v1

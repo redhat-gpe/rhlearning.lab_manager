@@ -12,7 +12,7 @@
 
   - name: Check the Template mlbparks-eap exists
     include_role:
-      name: grader_check_ocp_template_exists
+      name: rhlearning.lab_manager.grader_check_ocp_template_exists
     vars:
       task_description_message: Check that the mlbparks-eap template exists
       template_name: "mlbparks-eap"
@@ -21,7 +21,7 @@
 
   - name: Check that the route instant-app exists
     include_role:
-      name: grader_check_ocp_route_exists
+      name: rhlearning.lab_manager.grader_check_ocp_route_exists
     vars:
       task_description_message: Check that the route mlbparks exists
       route_name: "mlbparks"
@@ -30,7 +30,7 @@
 
   - name: Check that the route openshift4mlbparks exists
     include_role:
-      name: grader_check_ocp_route_exists
+      name: rhlearning.lab_manager.grader_check_ocp_route_exists
     vars:
       task_description_message: Check that the route openshift4mlbparks exists
       route_name: "openshift4mlbparks"

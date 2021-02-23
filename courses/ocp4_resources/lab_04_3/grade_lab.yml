@@ -12,7 +12,7 @@
 
   - name: Check the Route exists
     include_role:
-      name: grader_check_ocp_route_exists
+      name: rhlearning.lab_manager.grader_check_ocp_route_exists
     vars:
       task_description_message: Check if the Route bluegreen exists
       route_name: "bluegreen"

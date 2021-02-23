@@ -9,7 +9,7 @@
 
     - name: Log event to log file
       import_role:
-        name: lm_run_log_grade_to_log
+        name: rhlearning.lab_manager.lm_run_log_grade_to_log
 
   delegate_to: localhost
   when: r_state.changed

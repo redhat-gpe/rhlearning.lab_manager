@@ -7,26 +7,26 @@
   roles:      # All lab tests go here
 
     - name: Section 1
-      role: grader_check_always_succeed
+      role: rhlearning.lab_manager.grader_check_always_succeed
       vars:
         section_number: 2.2
         student_error_message: Grader failed
         task_description_message: Run lab grader on grader host 1
 
     - name: Section 2
-      role: grader_check_always_succeed
+      role: rhlearning.lab_manager.grader_check_always_succeed
       vars:
         section_number: 2.2
         student_error_message: Grader failed
         task_description_message: Run lab grader on grader host 2
     - name: Section 2
-      role: grader_check_always_succeed
+      role: rhlearning.lab_manager.grader_check_always_succeed
       vars:
         section_number: 2.2
         student_error_message: Grader failed
         task_description_message: Run lab grader on grader host 3
     - name: Section 2
-      role: grader_check_always_succeed
+      role: rhlearning.lab_manager.grader_check_always_succeed
       vars:
         section_number: 2.2
         student_error_message: Grader failed
